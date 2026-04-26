@@ -945,7 +945,6 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
               </div>
             </div>
           </div>
-        </div>
 
           {/* More Jobs in Category */}
           {relatedJobs.length > 0 && (
