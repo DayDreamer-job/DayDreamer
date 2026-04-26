@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { Briefcase, Twitter, Linkedin, Instagram } from "lucide-react";
 

@@ -129,7 +129,8 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+          {/* ── GRID: items-start is the KEY fix — prevents sidebar from stretching to row height ── */}
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
             {/* ── Main Content ─── */}
             <div className="lg:col-span-2 space-y-6">
               {/* Job Header Card - Enhanced */}
@@ -632,107 +633,8 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
               </Link>
             </div>
 
-            {/* ── Sidebar ─── */}
             <div className="space-y-5">
-              {/* Apply CTA (sticky on desktop) - ENHANCED */}
-              <div className="lg:sticky lg:top-20 lg:z-30 lg:max-h-[calc(100vh-80px)]">
-                <div className="card border-0 shadow-lg bg-white overflow-hidden flex flex-col h-full">
-                  {/* Source badge at top */}
-                  <div
-                    className="p-4 -m-6 mb-0 text-white text-sm font-semibold flex items-center gap-2"
-                    style={{ backgroundColor: sourceConfig.color }}
-                  >
-                    <span>{sourceConfig.icon}</span>
-                    Apply via {job.apply_source}
-                  </div>
-
-                  <div className="overflow-y-auto flex-1 p-6">
-                    <h3 className="font-display font-bold text-lg text-ink mb-2">
-                      Ready to apply?
-                    </h3>
-                    <p className="text-xs text-ink-subtle mb-6 leading-relaxed">
-                      You'll be redirected to{" "}
-                      <strong>
-                        {job.apply_source === "Company"
-                          ? job.company
-                          : job.apply_source}
-                      </strong>{" "}
-                      to complete your application. This takes about 2-5
-                      minutes.
-                    </p>
-
-                    <a
-                      href={job.apply_url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="w-full px-4 py-4 rounded-xl text-white font-bold text-base flex items-center justify-center gap-2 transition-all duration-200 hover:shadow-lg hover:scale-105 active:scale-95"
-                      style={{ backgroundColor: sourceConfig.color }}
-                    >
-                      Apply Now
-                      <ExternalLink size={18} />
-                    </a>
-
-                    <button className="btn-secondary w-full justify-center mt-3 text-sm">
-                      <Share2 size={15} />
-                      Share this Job
-                    </button>
-
-                    <div className="mt-6 pt-6 border-t border-cream-border space-y-4">
-                      <div className="text-center">
-                        <p className="text-xs text-ink-subtle mb-2">
-                          Job Posted
-                        </p>
-                        <p className="font-semibold text-ink">
-                          {timeAgo(job.posted_at)}
-                        </p>
-                      </div>
-                      <div className="grid grid-cols-2 gap-3 text-sm">
-                        <div className="bg-cream-warm p-3 rounded-lg text-center">
-                          <p className="text-xs text-ink-subtle mb-1">Type</p>
-                          <p className="font-semibold text-ink text-xs">
-                            {job.job_type}
-                          </p>
-                        </div>
-                        <div className="bg-cream-warm p-3 rounded-lg text-center">
-                          <p className="text-xs text-ink-subtle mb-1">Mode</p>
-                          <p className="font-semibold text-ink text-xs">
-                            {job.work_mode}
-                          </p>
-                        </div>
-                        <div className="bg-cream-warm p-3 rounded-lg text-center">
-                          <p className="text-xs text-ink-subtle mb-1">
-                            Experience
-                          </p>
-                          <p className="font-semibold text-ink text-xs">
-                            {job.experience}
-                          </p>
-                        </div>
-                        <div className="bg-cream-warm p-3 rounded-lg text-center">
-                          <p className="text-xs text-ink-subtle mb-1">
-                            Category
-                          </p>
-                          <p className="font-semibold text-ink text-xs">
-                            {job.category}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
-
-                    <div className="mt-6 pt-6 border-t border-cream-border">
-                      <p className="text-xs text-ink-subtle leading-relaxed">
-                        ℹ️ <strong>Info:</strong> Your personal data is never
-                        shared with employers. All applications go directly
-                        through{" "}
-                        {job.apply_source === "Company"
-                          ? "the company's"
-                          : job.apply_source + "'s"}{" "}
-                        official portal.
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
-
+              
               {/* Similar Roles Card */}
               {relatedJobs.length > 0 && (
                 <div className="card border-0 shadow-sm bg-white">
@@ -924,7 +826,7 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
                 </div>
               )}
 
-              {/* Share & Save Card */}
+              {/* Share & Save Card
               <div className="card border-0 shadow-sm bg-white">
                 <h3 className="font-display font-bold text-lg text-ink mb-4 flex items-center gap-2">
                   <Share2 size={20} className="text-brand-500" />
@@ -941,6 +843,102 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
                     <Copy size={14} />
                     Copy Link
                   </button>
+                </div>
+              </div> */}
+              <div className="sticky top-20 z-30">
+                <div className="card border-0 shadow-lg bg-white overflow-hidden">
+                  <div
+                    className="p-4 -m-6 mb-0 text-white text-sm font-semibold flex items-center gap-2"
+                    style={{ backgroundColor: sourceConfig.color }}
+                  >
+                    <span>{sourceConfig.icon}</span>
+                    Apply via {job.apply_source}
+                  </div>
+
+                  <div className="p-6">
+                    <h3 className="font-display font-bold text-lg text-ink mb-2">
+                      Ready to apply?
+                    </h3>
+                    <p className="text-xs text-ink-subtle mb-6 leading-relaxed">
+                      You'll be redirected to{" "}
+                      <strong>
+                        {job.apply_source === "Company"
+                          ? job.company
+                          : job.apply_source}
+                      </strong>{" "}
+                      to complete your application. This takes about 2-5
+                      minutes.
+                    </p>
+
+                    <a
+                      href={job.apply_url}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="w-full px-4 py-4 rounded-xl text-white font-bold text-base flex items-center justify-center gap-2 transition-all duration-200 hover:shadow-lg hover:scale-105 active:scale-95"
+                      style={{ backgroundColor: sourceConfig.color }}
+                    >
+                      Apply Now
+                      <ExternalLink size={18} />
+                    </a>
+
+                    <button className="btn-secondary w-full justify-center mt-3 text-sm">
+                      <Share2 size={15} />
+                      Share this Job
+                    </button>
+
+                    <div className="mt-6 pt-6 border-t border-cream-border space-y-4">
+                      <div className="text-center">
+                        <p className="text-xs text-ink-subtle mb-2">
+                          Job Posted
+                        </p>
+                        <p className="font-semibold text-ink">
+                          {timeAgo(job.posted_at)}
+                        </p>
+                      </div>
+                      <div className="grid grid-cols-2 gap-3 text-sm">
+                        <div className="bg-cream-warm p-3 rounded-lg text-center">
+                          <p className="text-xs text-ink-subtle mb-1">Type</p>
+                          <p className="font-semibold text-ink text-xs">
+                            {job.job_type}
+                          </p>
+                        </div>
+                        <div className="bg-cream-warm p-3 rounded-lg text-center">
+                          <p className="text-xs text-ink-subtle mb-1">Mode</p>
+                          <p className="font-semibold text-ink text-xs">
+                            {job.work_mode}
+                          </p>
+                        </div>
+                        <div className="bg-cream-warm p-3 rounded-lg text-center">
+                          <p className="text-xs text-ink-subtle mb-1">
+                            Experience
+                          </p>
+                          <p className="font-semibold text-ink text-xs">
+                            {job.experience}
+                          </p>
+                        </div>
+                        <div className="bg-cream-warm p-3 rounded-lg text-center">
+                          <p className="text-xs text-ink-subtle mb-1">
+                            Category
+                          </p>
+                          <p className="font-semibold text-ink text-xs">
+                            {job.category}
+                          </p>
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="mt-6 pt-6 border-t border-cream-border">
+                      <p className="text-xs text-ink-subtle leading-relaxed">
+                        ℹ️ <strong>Info:</strong> Your personal data is never
+                        shared with employers. All applications go directly
+                        through{" "}
+                        {job.apply_source === "Company"
+                          ? "the company's"
+                          : job.apply_source + "'s"}{" "}
+                        official portal.
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
