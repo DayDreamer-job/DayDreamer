@@ -1,4 +1,4 @@
-# 🚀 DayDreamer — Full Stack Job Portal
+# 🚀 JobsAdda — Full Stack Job Portal
 
 A professional job listing website built with **Next.js 14**, **Supabase**, **Tailwind CSS**, and a **Python scraper** for daily automated updates.
 
@@ -22,7 +22,7 @@ A professional job listing website built with **Next.js 14**, **Supabase**, **Ta
 ## 🗂️ Project Structure
 
 ```
-daydreamer/
+jobsadda/
 ├── src/
 │   ├── app/
 │   │   ├── page.tsx              ← Homepage
@@ -70,8 +70,8 @@ daydreamer/
 
 ```bash
 # Clone the repo
-git clone https://github.com/YOUR_USERNAME/daydreamer.git
-cd daydreamer
+git clone https://github.com/YOUR_USERNAME/jobsadda.git
+cd jobsadda
 
 # Install Node dependencies
 npm install
@@ -83,7 +83,7 @@ npm install
 
 1. Go to **https://supabase.com** → Sign up (free)
 2. Click **"New Project"**
-3. Choose a name (e.g., `daydreamer`), set a strong password, choose region **Asia South (Mumbai)**
+3. Choose a name (e.g., `jobsadda`), set a strong password, choose region **Asia South (Mumbai)**
 4. Wait ~2 minutes for the project to provision
 5. Go to **Settings → API**
 6. Copy:
@@ -133,7 +133,6 @@ npm run dev
 Open **http://localhost:3000** in your browser.
 
 You should see:
-
 - ✅ Homepage with hero and 10 sample jobs
 - ✅ /jobs page with search + filters
 - ✅ Individual job detail pages
@@ -156,8 +155,8 @@ npm start
 ```bash
 git init
 git add .
-git commit -m "Initial commit — DayDreamer"
-git remote add origin https://github.com/YOUR_USERNAME/daydreamer.git
+git commit -m "Initial commit — JobsAdda"
+git remote add origin https://github.com/YOUR_USERNAME/jobsadda.git
 git push -u origin main
 ```
 
@@ -165,7 +164,7 @@ git push -u origin main
 
 1. Go to **https://vercel.com** → Sign up / Log in with GitHub
 2. Click **"Add New Project"**
-3. Import your `daydreamer` GitHub repository
+3. Import your `jobsadda` GitHub repository
 4. In the **Environment Variables** section, add:
    - `NEXT_PUBLIC_SUPABASE_URL` → your Supabase URL
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY` → your Supabase anon key
@@ -173,7 +172,7 @@ git push -u origin main
 5. Click **"Deploy"**
 6. Wait ~2 minutes → your site is live! 🎉
 
-You'll get a URL like: `https://daydreamer.vercel.app`
+You'll get a URL like: `https://jobsadda.vercel.app`
 
 ### Step 9 — Add a Custom Domain (Optional, ~₹800/year)
 
@@ -198,12 +197,11 @@ pip install -r requirements.txt
 ```
 
 Create `scripts/.env` (copy from root .env.local):
-
 ```env
 NEXT_PUBLIC_SUPABASE_URL=https://xxxxxxxxxxxx.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ...
 ADMIN_SECRET=your-admin-secret
-SITE_URL=https://daydreamer.vercel.app
+SITE_URL=https://jobsadda.vercel.app
 ```
 
 ### Step 11 — Test the Scraper
@@ -243,15 +241,15 @@ python scraper.py --source all
 1. Go to your GitHub repo → **Settings → Secrets → Actions**
 2. Add these secrets:
 
-| Secret Name                     | Value                           |
-| ------------------------------- | ------------------------------- |
-| `NEXT_PUBLIC_SUPABASE_URL`      | Your Supabase URL               |
-| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Your Supabase anon key          |
-| `ADMIN_SECRET`                  | Your admin secret               |
-| `ADZUNA_APP_ID`                 | Adzuna App ID (optional)        |
-| `ADZUNA_API_KEY`                | Adzuna API Key (optional)       |
-| `VERCEL_DEPLOY_HOOK_URL`        | Vercel deploy hook (see below)  |
-| `SITE_URL`                      | `https://daydreamer.vercel.app` |
+| Secret Name | Value |
+|-------------|-------|
+| `NEXT_PUBLIC_SUPABASE_URL` | Your Supabase URL |
+| `NEXT_PUBLIC_SUPABASE_ANON_KEY` | Your Supabase anon key |
+| `ADMIN_SECRET` | Your admin secret |
+| `ADZUNA_APP_ID` | Adzuna App ID (optional) |
+| `ADZUNA_API_KEY` | Adzuna API Key (optional) |
+| `VERCEL_DEPLOY_HOOK_URL` | Vercel deploy hook (see below) |
+| `SITE_URL` | `https://jobsadda.vercel.app` |
 
 ### Step 14 — Create a Vercel Deploy Hook
 
@@ -264,7 +262,6 @@ python scraper.py --source all
 The workflow file is already at `.github/workflows/daily-scraper.yml`.
 
 It runs:
-
 - **Every day at 7:00 AM IST** (1:30 AM UTC)
 - You can also trigger it manually from GitHub → **Actions → Daily Job Scraper → Run workflow**
 
@@ -305,7 +302,6 @@ MANUAL_JOBS = [
 ```
 
 Then run:
-
 ```bash
 python scripts/scraper.py --source manual
 ```
@@ -313,7 +309,7 @@ python scripts/scraper.py --source manual
 ### Option C — API (For automation / integrations)
 
 ```bash
-curl -X POST https://daydreamer.vercel.app/api/jobs \
+curl -X POST https://jobsadda.vercel.app/api/jobs \
   -H "Content-Type: application/json" \
   -H "x-admin-secret: YOUR_ADMIN_SECRET" \
   -d '{
@@ -334,26 +330,26 @@ curl -X POST https://daydreamer.vercel.app/api/jobs \
 
 ## 💰 Hosting Costs
 
-| Service            | Free Tier                              | Paid                  |
-| ------------------ | -------------------------------------- | --------------------- |
-| **Vercel**         | 100GB bandwidth, unlimited deployments | ~₹1,600/mo (Pro)      |
-| **Supabase**       | 500MB DB, 2GB bandwidth                | ~₹2,000/mo (Pro)      |
-| **GitHub Actions** | 2,000 min/month free                   | Free for public repos |
-| **Domain**         | —                                      | ~₹800–1,200/year      |
-| **Total**          | **₹0/month**                           | Just domain cost      |
+| Service | Free Tier | Paid |
+|---------|-----------|------|
+| **Vercel** | 100GB bandwidth, unlimited deployments | ~₹1,600/mo (Pro) |
+| **Supabase** | 500MB DB, 2GB bandwidth | ~₹2,000/mo (Pro) |
+| **GitHub Actions** | 2,000 min/month free | Free for public repos |
+| **Domain** | — | ~₹800–1,200/year |
+| **Total** | **₹0/month** | Just domain cost |
 
 ---
 
 ## 🔧 Tech Stack
 
-| Layer      | Technology                         |
-| ---------- | ---------------------------------- |
-| Frontend   | Next.js 14, React 18, TypeScript   |
-| Styling    | Tailwind CSS, custom design system |
-| Database   | Supabase (PostgreSQL)              |
-| Hosting    | Vercel                             |
-| Automation | Python 3.12, GitHub Actions        |
-| Fonts      | Playfair Display, DM Sans, DM Mono |
+| Layer | Technology |
+|-------|-----------|
+| Frontend | Next.js 14, React 18, TypeScript |
+| Styling | Tailwind CSS, custom design system |
+| Database | Supabase (PostgreSQL) |
+| Hosting | Vercel |
+| Automation | Python 3.12, GitHub Actions |
+| Fonts | Playfair Display, DM Sans, DM Mono |
 
 ---
 
