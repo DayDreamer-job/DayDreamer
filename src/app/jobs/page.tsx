@@ -70,7 +70,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
                 : 'All Jobs'}
             </h1>
             <p className="text-ink-subtle text-sm mb-6">
-              {count || 0} job{count !== 1 ? 's' : ''} found
+              /* {count || 0} job{count !== 1 ? 's' : ''} found */
               {filters.category && filters.category !== 'All' ? ` in ${filters.category}` : ''}
             </p>
             <Suspense>
