@@ -41,6 +41,9 @@ import {
   getInitials,
 } from "@/lib/utils";
 
+// Revalidate page every 60 seconds for updated job data
+export const revalidate = 60;
+
 interface JobDetailPageProps {
   params: { id: string };
 }

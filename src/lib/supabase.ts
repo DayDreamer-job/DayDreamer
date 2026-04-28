@@ -10,7 +10,7 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey)
 export async function getJobs(filters?: JobFilters, limit = 20, offset = 0) {
   let query = supabase
     .from('jobs')
-    .select('*')
+    .select('*', { count: 'exact' })
     .eq('is_active', true)
     .order('is_featured', { ascending: false })
     .order('posted_at', { ascending: false })
