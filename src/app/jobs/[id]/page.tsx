@@ -25,8 +25,6 @@ import {
   Shield,
   MessageCircle,
 } from "lucide-react";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import JobCard from "@/components/ui/JobCard";
 import {
   getJobById,
@@ -211,7 +209,6 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <Navbar />
       <main className="min-h-screen pt-16 bg-gradient-to-b from-cream-warm/30 to-white">
         {/* Breadcrumb */}
         <div className="border-b border-cream-border bg-white/60 backdrop-blur-sm sticky top-16 z-40">
@@ -1054,7 +1051,6 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
           )}
         </div>
       </main>
-      <Footer />
     </>
   );
 }

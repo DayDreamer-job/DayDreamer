@@ -8,8 +8,6 @@ import {
   MapPin,
   Star,
 } from "lucide-react";
-import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import JobCard from "@/components/ui/JobCard";
 import SearchBar from "@/components/ui/SearchBar";
 import { getFeaturedJobs, getJobCount, getCategories } from "@/lib/supabase";
@@ -48,8 +46,6 @@ export default async function HomePage() {
 
   return (
     <>
-      <Navbar />
-
       {/* ── HERO ─────────────────────────────────────── */}
       <section className="relative min-h-screen flex flex-col justify-center overflow-hidden pt-16">
         {/* Background */}
@@ -315,8 +311,6 @@ export default async function HomePage() {
           </div>
         </div>
       </section>
-
-      <Footer />
     </>
   );
 }

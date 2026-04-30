@@ -1,7 +1,5 @@
 import { Suspense } from 'react'
 import type { Metadata } from 'next'
-import Navbar from '@/components/layout/Navbar'
-import Footer from '@/components/layout/Footer'
 import JobCard from '@/components/ui/JobCard'
 import SearchBar from '@/components/ui/SearchBar'
 import CategoryFilter from '@/components/ui/CategoryFilter'
@@ -70,7 +68,6 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
 
   return (
     <>
-      <Navbar />
       <main className="min-h-screen pt-16">
         {/* Header */}
         <div className="bg-cream-warm border-b border-cream-border">
@@ -169,7 +166,6 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
           )}
         </div>
       </main>
-      <Footer />
     </>
   )
 }
