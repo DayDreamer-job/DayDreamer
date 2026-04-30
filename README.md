@@ -1,4 +1,4 @@
-# 🚀 JobsAdda — Full Stack Job Portal
+# 🚀 DayDreamer — Full Stack Job Portal
 
 A professional job listing website built with **Next.js 14**, **Supabase**, **Tailwind CSS**, and a **Python scraper** for daily automated updates.
 
@@ -22,7 +22,7 @@ A professional job listing website built with **Next.js 14**, **Supabase**, **Ta
 ## 🗂️ Project Structure
 
 ```
-jobsadda/
+DayDreamer/
 ├── src/
 │   ├── app/
 │   │   ├── page.tsx              ← Homepage
@@ -70,8 +70,8 @@ jobsadda/
 
 ```bash
 # Clone the repo
-git clone https://github.com/YOUR_USERNAME/jobsadda.git
-cd jobsadda
+git clone https://github.com/YOUR_USERNAME/DayDreamer.git
+cd DayDreamer
 
 # Install Node dependencies
 npm install
@@ -83,7 +83,7 @@ npm install
 
 1. Go to **https://supabase.com** → Sign up (free)
 2. Click **"New Project"**
-3. Choose a name (e.g., `jobsadda`), set a strong password, choose region **Asia South (Mumbai)**
+3. Choose a name (e.g., `DayDreamer`), set a strong password, choose region **Asia South (Mumbai)**
 4. Wait ~2 minutes for the project to provision
 5. Go to **Settings → API**
 6. Copy:
@@ -155,8 +155,8 @@ npm start
 ```bash
 git init
 git add .
-git commit -m "Initial commit — JobsAdda"
-git remote add origin https://github.com/YOUR_USERNAME/jobsadda.git
+git commit -m "Initial commit — DayDreamer"
+git remote add origin https://github.com/YOUR_USERNAME/DayDreamer.git
 git push -u origin main
 ```
 
@@ -164,7 +164,7 @@ git push -u origin main
 
 1. Go to **https://vercel.com** → Sign up / Log in with GitHub
 2. Click **"Add New Project"**
-3. Import your `jobsadda` GitHub repository
+3. Import your `DayDreamer` GitHub repository
 4. In the **Environment Variables** section, add:
    - `NEXT_PUBLIC_SUPABASE_URL` → your Supabase URL
    - `NEXT_PUBLIC_SUPABASE_ANON_KEY` → your Supabase anon key
@@ -172,7 +172,7 @@ git push -u origin main
 5. Click **"Deploy"**
 6. Wait ~2 minutes → your site is live! 🎉
 
-You'll get a URL like: `https://jobsadda.vercel.app`
+You'll get a URL like: `https://DayDreamer.vercel.app`
 
 ### Step 9 — Add a Custom Domain (Optional, ~₹800/year)
 
@@ -201,7 +201,7 @@ Create `scripts/.env` (copy from root .env.local):
 NEXT_PUBLIC_SUPABASE_URL=https://xxxxxxxxxxxx.supabase.co
 NEXT_PUBLIC_SUPABASE_ANON_KEY=eyJ...
 ADMIN_SECRET=your-admin-secret
-SITE_URL=https://jobsadda.vercel.app
+SITE_URL=https://DayDreamer.vercel.app
 ```
 
 ### Step 11 — Test the Scraper
@@ -249,7 +249,7 @@ python scraper.py --source all
 | `ADZUNA_APP_ID` | Adzuna App ID (optional) |
 | `ADZUNA_API_KEY` | Adzuna API Key (optional) |
 | `VERCEL_DEPLOY_HOOK_URL` | Vercel deploy hook (see below) |
-| `SITE_URL` | `https://jobsadda.vercel.app` |
+| `SITE_URL` | `https://DayDreamer.vercel.app` |
 
 ### Step 14 — Create a Vercel Deploy Hook
 
@@ -309,7 +309,7 @@ python scripts/scraper.py --source manual
 ### Option C — API (For automation / integrations)
 
 ```bash
-curl -X POST https://jobsadda.vercel.app/api/jobs \
+curl -X POST https://DayDreamer.vercel.app/api/jobs \
   -H "Content-Type: application/json" \
   -H "x-admin-secret: YOUR_ADMIN_SECRET" \
   -d '{

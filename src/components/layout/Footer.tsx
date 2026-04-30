@@ -1,7 +1,7 @@
 "use client";
 
 import Link from "next/link";
-import { Briefcase, Twitter, Linkedin, Instagram } from "lucide-react";
+import { Briefcase } from "lucide-react";
 
 export default function Footer() {
   return (
@@ -22,22 +22,7 @@ export default function Footer() {
               Your daily destination for fresh job opportunities in India.
               Curated jobs for freshers and professionals across all industries.
             </p>
-            <div className="flex gap-4 mt-6">
-              {[
-                { icon: Twitter, href: "#", label: "Twitter" },
-                { icon: Linkedin, href: "#", label: "LinkedIn" },
-                { icon: Instagram, href: "#", label: "Instagram" },
-              ].map(({ icon: Icon, href, label }) => (
-                <a
-                  key={label}
-                  href={href}
-                  aria-label={label}
-                  className="w-8 h-8 rounded-lg bg-cream/10 flex items-center justify-center hover:bg-brand-500 transition-colors"
-                >
-                  <Icon size={14} />
-                </a>
-              ))}
-            </div>
+
           </div>
 
           {/* Links */}
@@ -66,6 +51,7 @@ export default function Footer() {
             </ul>
           </div>
 
+          {/* Company */}
           <div>
             <h3 className="text-white font-semibold text-sm mb-4">Company</h3>
             <ul className="space-y-2.5">
