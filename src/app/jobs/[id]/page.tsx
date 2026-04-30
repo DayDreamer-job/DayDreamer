@@ -55,24 +55,56 @@ export async function generateStaticParams() {
   }));
 }
 
+// ─── ENHANCED METADATA ───────────────────────────────────────────────────────
 export async function generateMetadata({
   params,
 }: JobDetailPageProps): Promise<Metadata> {
   try {
     const paramsResolved = await params;
     const job = await getJobById(paramsResolved.id);
+
+    const title = `${job.title} at ${job.company} in ${job.location} | Jobs NewsMatrix`;
+    const description = `${job.work_mode || ""} ${job.job_type || ""} position at ${job.company}. Location: ${job.location}. Experience: ${job.experience || "Not specified"}. ${job.salary_text ? "Salary: " + job.salary_text + "." : ""} Apply now on Jobs NewsMatrix.`.trim();
+
     return {
-      title: `${job.title} at ${job.company}`,
-      description: job.description.slice(0, 160),
+      title,
+      description,
+      keywords: [
+        job.title,
+        job.company,
+        job.location,
+        job.category,
+        job.work_mode,
+        job.job_type,
+        "jobs in india",
+        "apply now",
+        ...(job.skills || []),
+      ].filter(Boolean),
+      alternates: {
+        canonical: `https://jobs.newsmatrix.in/jobs/${paramsResolved.id}`,
+      },
       openGraph: {
         title: `${job.title} — ${job.company}`,
         description: `${job.location} · ${job.work_mode} · ${job.salary_text || "Salary not disclosed"}`,
+        url: `https://jobs.newsmatrix.in/jobs/${paramsResolved.id}`,
+        siteName: "Jobs NewsMatrix",
+        type: "article",
+        locale: "en_IN",
+        ...(job.logo_url && {
+          images: [{ url: job.logo_url, alt: `${job.company} logo` }],
+        }),
+      },
+      twitter: {
+        card: "summary",
+        title: `${job.title} at ${job.company}`,
+        description: `${job.location} · ${job.work_mode} · Apply now on Jobs NewsMatrix`,
       },
     };
   } catch {
     return { title: "Job Not Found" };
   }
 }
+// ─────────────────────────────────────────────────────────────────────────────
 
 const SOURCE_CONFIG: Record<
   string,
@@ -103,8 +135,82 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
   const jobType = getJobTypeBadge(job.job_type);
   const sourceConfig = SOURCE_CONFIG[job.apply_source] || SOURCE_CONFIG.Company;
 
+  // ─── JSON-LD STRUCTURED DATA (Google Jobs rich result) ───────────────────
+  const employmentTypeMap: Record<string, string> = {
+    "Full-time": "FULL_TIME",
+    "Part-time": "PART_TIME",
+    Contract: "CONTRACTOR",
+    Internship: "INTERN",
+    Freelance: "CONTRACTOR",
+    Temporary: "TEMPORARY",
+  };
+
+  const jsonLd = {
+    "@context": "https://schema.org/",
+    "@type": "JobPosting",
+    title: job.title,
+    description: job.description,
+    datePosted: job.posted_at || job.created_at,
+    validThrough: new Date(
+      Date.now() + 30 * 24 * 60 * 60 * 1000,
+    ).toISOString(),
+    employmentType:
+      employmentTypeMap[job.job_type] || "FULL_TIME",
+    hiringOrganization: {
+      "@type": "Organization",
+      name: job.company,
+      ...(job.logo_url && { logo: job.logo_url }),
+    },
+    jobLocation: {
+      "@type": "Place",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: job.location,
+        addressCountry: "IN",
+      },
+    },
+    ...(job.work_mode === "Remote" && {
+      jobLocationType: "TELECOMMUTE",
+      applicantLocationRequirements: {
+        "@type": "Country",
+        name: "India",
+      },
+    }),
+    ...(job.salary_text && {
+      baseSalary: {
+        "@type": "MonetaryAmount",
+        currency: "INR",
+        value: {
+          "@type": "QuantitativeValue",
+          unitText: "YEAR",
+          description: job.salary_text,
+        },
+      },
+    }),
+    ...(job.experience && {
+      experienceRequirements: {
+        "@type": "OccupationalExperienceRequirements",
+        monthsOfExperience: 0,
+        description: job.experience,
+      },
+    }),
+    ...(job.skills &&
+      job.skills.length > 0 && {
+        skills: job.skills.join(", "),
+      }),
+    url: `https://jobs.newsmatrix.in/jobs/${paramsResolved.id}`,
+    directApply: true,
+  };
+  // ─────────────────────────────────────────────────────────────────────────
+
   return (
     <>
+      {/* ─── JSON-LD injected into <head> via Next.js ─── */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
+
       <Navbar />
       <main className="min-h-screen pt-16 bg-gradient-to-b from-cream-warm/30 to-white">
         {/* Breadcrumb */}
@@ -829,25 +935,6 @@ export default async function JobDetailPage({ params }: JobDetailPageProps) {
                 </div>
               )}
 
-              {/* Share & Save Card
-              <div className="card border-0 shadow-sm bg-white">
-                <h3 className="font-display font-bold text-lg text-ink mb-4 flex items-center gap-2">
-                  <Share2 size={20} className="text-brand-500" />
-                  Share This Job
-                </h3>
-                <div className="space-y-2">
-                  <button className="w-full px-4 py-2 rounded-lg bg-blue-50 text-blue-600 font-semibold text-sm hover:bg-blue-100 transition-colors flex items-center justify-center gap-2">
-                    📘 Share on Facebook
-                  </button>
-                  <button className="w-full px-4 py-2 rounded-lg bg-sky-50 text-sky-600 font-semibold text-sm hover:bg-sky-100 transition-colors flex items-center justify-center gap-2">
-                    𝕏 Share on Twitter
-                  </button>
-                  <button className="w-full px-4 py-2 rounded-lg bg-slate-50 text-slate-600 font-semibold text-sm hover:bg-slate-100 transition-colors flex items-center justify-center gap-2">
-                    <Copy size={14} />
-                    Copy Link
-                  </button>
-                </div>
-              </div> */}
               <div className="sticky top-20 z-30">
                 <div className="card border-0 shadow-lg bg-white overflow-hidden">
                   <div

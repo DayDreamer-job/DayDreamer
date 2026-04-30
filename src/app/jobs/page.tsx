@@ -5,8 +5,8 @@ import Footer from '@/components/layout/Footer'
 import JobCard from '@/components/ui/JobCard'
 import SearchBar from '@/components/ui/SearchBar'
 import CategoryFilter from '@/components/ui/CategoryFilter'
-import { getJobs } from '@/lib/supabase'
-import { JobFilters } from '@/types'
+import { getJobs, getJobCount } from '@/lib/supabase'
+import { JobFilters, Job } from '@/types'
 import { Briefcase, ArrowLeft, ArrowRight } from 'lucide-react'
 import Link from 'next/link'
 
@@ -39,7 +39,20 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
     job_type: searchParamsResolved.job_type,
   }
 
-  const { jobs, count } = await getJobs(filters, PAGE_SIZE, offset).catch(() => ({ jobs: [], count: 0 }))
+  let jobs: Job[] = []
+  let count: number | null = 0
+  let totalActiveJobs: number = 0
+  try {
+    const [result, total] = await Promise.all([
+      getJobs(filters, PAGE_SIZE, offset),
+      getJobCount()
+    ])
+    jobs = result.jobs
+    count = result.count ?? 0
+    totalActiveJobs = total
+  } catch (error) {
+    console.error('Error fetching jobs:', error)
+  }
   const totalPages = Math.ceil((count || 0) / PAGE_SIZE)
 
   const activeFilterCount = Object.values(filters).filter(Boolean).length
@@ -70,7 +83,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
                 : 'All Jobs'}
             </h1>
             <p className="text-ink-subtle text-sm mb-6">
-              {/* {count || 0} job{count !== 1 ? 's' : ''} found */}
+              {count || 0} job{count !== 1 ? 's' : ''} found
               {filters.category && filters.category !== 'All' ? ` in ${filters.category}` : ''}
             </p>
             <Suspense>
