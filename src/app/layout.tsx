@@ -3,6 +3,7 @@ import { Playfair_Display, DM_Sans, DM_Mono } from "next/font/google";
 import "./globals.css";
 
 import Script from 'next/script'
+import { Analytics } from "@vercel/analytics/next"
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 
@@ -96,6 +97,7 @@ export default function RootLayout({
         <Navbar />
         {children}
         <Footer />
+        <Analytics />
         {/* // Inside your return, just after <body>: */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-JRH7525Z8H"
