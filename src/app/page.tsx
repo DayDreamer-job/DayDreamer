@@ -14,6 +14,8 @@ import { getFeaturedJobs, getJobCount, getCategories } from "@/lib/supabase";
 import { CATEGORY_ICONS } from "@/lib/utils";
 import { Suspense } from "react";
 
+export const revalidate = 60; // Revalidate every 60 seconds
+
 const TICKER_COMPANIES = [
   "Google",
   "Microsoft",
