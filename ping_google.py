@@ -6,9 +6,9 @@ urls = [
     "https://jobs.newsmatrix.in/sitemap.xml",
 ]
 
-# Ping Google sitemap
+# Ping Bing sitemap
 r = requests.get(
     "https://www.bing.com/ping",
     params={"sitemap": "https://jobs.newsmatrix.in/sitemap.xml"}
 )
-print("✅ Google ping status:", r.status_code)
+print("✅ Bing ping status:", r.status_code)
