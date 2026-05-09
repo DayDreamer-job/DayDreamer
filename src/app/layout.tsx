@@ -76,6 +76,9 @@ export const metadata: Metadata = {
   verification: {
     google: 'qWla1wyFvfCGTyzx8NrLd9yOz5Y7XvWSYNPbI_-isyA', // from Step 2
   },
+  icons: {
+    icon: '/favicon.png',
+  },
   openGraph: {
     siteName: 'DayDreamer',
     type: 'website',
