@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Sitemap location
-Sitemap: https://daydreamer.in/sitemap.xml
+Sitemap: https://jobs.newsmatrix.in/sitemap.xml
 
 # Specific rules for search engines
 User-agent: Googlebot
