@@ -6,6 +6,7 @@ const supabase = createClient(
   process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY!
 )
 
+//baseUrl
 const BASE_URL = 'https://jobs.newsmatrix.in'
 
 const STATIC_PAGES: MetadataRoute.Sitemap = [

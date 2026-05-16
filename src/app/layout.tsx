@@ -26,42 +26,6 @@ const dmMono = DM_Mono({
   display: "swap",
 });
 
-// export const metadata: Metadata = {
-//   title: {
-//     default: "DayDreamer — Fresh Jobs for Freshers & Professionals",
-//     template: "%s | DayDreamer",
-//   },
-//   description:
-//     "Discover the best job opportunities in India. Curated daily for freshers and professionals across tech, design, marketing, data, and more.",
-//   keywords: [
-//     "jobs india",
-//     "fresher jobs",
-//     "tech jobs",
-//     "remote jobs india",
-//     "naukri",
-//     "job portal",
-//   ],
-//   openGraph: {
-//     type: "website",
-//     locale: "en_IN",
-//     url: "https://daydreamer.in",
-//     siteName: "DayDreamer",
-//     title: "DayDreamer — Fresh Jobs Every Day",
-//     description:
-//       "Curated job opportunities for freshers and professionals in India.",
-//   },
-//   twitter: {
-//     card: "summary_large_image",
-//     title: "DayDreamer — Fresh Jobs Every Day",
-//     description:
-//       "Curated job opportunities for freshers and professionals in India.",
-//   },
-//   robots: {
-//     index: true,
-//     follow: true,
-//   },
-// };
-
 export const metadata: Metadata = {
   title: {
     default: 'DayDreamer — Latest Jobs in India',
@@ -76,9 +40,6 @@ export const metadata: Metadata = {
   verification: {
     google: 'qWla1wyFvfCGTyzx8NrLd9yOz5Y7XvWSYNPbI_-isyA', // from Step 2
   },
-  // icons: {
-  //   icon: '/favicon.png',
-  // },
   icons: {
     icon: [
       { url: '/favicon.png', sizes: '192x192', type: 'image/png' },
