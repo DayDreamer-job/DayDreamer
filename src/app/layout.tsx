@@ -76,9 +76,17 @@ export const metadata: Metadata = {
   verification: {
     google: 'qWla1wyFvfCGTyzx8NrLd9yOz5Y7XvWSYNPbI_-isyA', // from Step 2
   },
+  // icons: {
+  //   icon: '/favicon.png',
+  // },
   icons: {
-    icon: '/favicon.png',
+    icon: [
+      { url: '/favicon.png', sizes: '192x192', type: 'image/png' },
+    ],
+    shortcut: '/favicon.png',
+    apple: '/favicon.png',
   },
+  manifest: '/manifest.json',
   openGraph: {
     siteName: 'DayDreamer',
     type: 'website',
