@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1"
+        xmlns:mobile="http://www.google.com/schemas/sitemap-mobile/1.0">
+
+  <!-- Homepage -->
+  <url>
+    <loc>https://jobs.newsmatrix.in/</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Jobs Listing Page -->
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.95</priority>
+  </url>
+
+  <!-- Job Categories Pages -->
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?category=Technology</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?category=Design</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?category=Marketing</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?category=Finance</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?category=Sales</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?category=HR</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.90</priority>
+  </url>
+
+  <!-- Job Type Pages -->
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?job_type=Full-time</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?job_type=Part-time</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?job_type=Contract</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?job_type=Internship</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?job_type=Freelance</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Work Mode Pages -->
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?work_mode=Remote</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?work_mode=On-site</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?work_mode=Hybrid</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Experience Level Pages -->
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?experience=Fresher</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?experience=Entry-Level</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?experience=Mid-Level</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?experience=Senior</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?experience=Executive</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- Major Cities Pages -->
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?location=Delhi</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?location=Mumbai</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?location=Bangalore</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?location=Hyderabad</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?location=Pune</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?location=Chennai</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <url>
+    <loc>https://jobs.newsmatrix.in/jobs?location=Kolkata</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.85</priority>
+  </url>
+
+  <!-- About Us -->
+  <url>
+    <loc>https://jobs.newsmatrix.in/about</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Contact Us -->
+  <url>
+    <loc>https://jobs.newsmatrix.in/contact</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.80</priority>
+  </url>
+
+  <!-- Sitemap Page -->
+  <url>
+    <loc>https://jobs.newsmatrix.in/sitemap</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.75</priority>
+  </url>
+
+  <!-- Privacy Policy -->
+  <url>
+    <loc>https://jobs.newsmatrix.in/privacy</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.60</priority>
+  </url>
+
+  <!-- Terms of Use -->
+  <url>
+    <loc>https://jobs.newsmatrix.in/terms</loc>
+    <lastmod>2026-05-01</lastmod>
+    <changefreq>yearly</changefreq>
+    <priority>0.60</priority>
+  </url>
+
+</urlset>
