@@ -24,6 +24,7 @@ interface JobsPageProps {
 }
 
 const PAGE_SIZE = 12
+const PAGINATION_WINDOW = 3 // pages shown on each side of the current page
 
 export default async function JobsPage({ searchParams }: JobsPageProps) {
   const searchParamsResolved = await searchParams
@@ -55,7 +56,7 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
 
   const activeFilterCount = Object.values(filters).filter(Boolean).length
 
-  // Build pagination URL
+  // Build pagination URL preserving all active filters
   const buildPageUrl = (p: number) => {
     const params = new URLSearchParams()
     if (filters.search) params.set('search', filters.search)
@@ -64,6 +65,40 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
     if (filters.job_type) params.set('job_type', filters.job_type)
     params.set('page', String(p))
     return `/jobs?${params.toString()}`
+  }
+
+  // Build a sliding window of page numbers with ellipsis markers
+  const buildPageList = (): (number | 'ellipsis')[] => {
+    const pages: (number | 'ellipsis')[] = []
+
+    // Always show first page
+    pages.push(1)
+
+    // Left ellipsis — if the window start is more than 1 away from page 1
+    if (page - PAGINATION_WINDOW > 2) {
+      pages.push('ellipsis')
+    }
+
+    // Sliding window around current page (excluding first and last pages)
+    for (
+      let p = Math.max(2, page - PAGINATION_WINDOW);
+      p <= Math.min(totalPages - 1, page + PAGINATION_WINDOW);
+      p++
+    ) {
+      pages.push(p)
+    }
+
+    // Right ellipsis — if the window end is more than 1 away from the last page
+    if (page + PAGINATION_WINDOW < totalPages - 1) {
+      pages.push('ellipsis')
+    }
+
+    // Always show last page (if there's more than one page)
+    if (totalPages > 1) {
+      pages.push(totalPages)
+    }
+
+    return pages
   }
 
   return (
@@ -102,7 +137,10 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
             <div className="flex flex-wrap gap-2 mb-6">
               {Object.entries(filters).map(([key, val]) =>
                 val ? (
-                  <span key={key} className="inline-flex items-center gap-1.5 bg-ink text-white text-xs font-medium px-3 py-1.5 rounded-full">
+                  <span
+                    key={key}
+                    className="inline-flex items-center gap-1.5 bg-ink text-white text-xs font-medium px-3 py-1.5 rounded-full"
+                  >
                     {val}
                   </span>
                 ) : null
@@ -132,16 +170,24 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
           {/* Pagination */}
           {totalPages > 1 && (
             <div className="flex items-center justify-center gap-2 mt-12">
+              {/* Previous button */}
               {page > 1 && (
-                <Link href={buildPageUrl(page - 1)} className="btn-secondary px-4 py-2">
+                <Link href={buildPageUrl(page - 1)} className="btn-secondary px-4 py-2 flex items-center gap-1">
                   <ArrowLeft size={15} /> Previous
                 </Link>
               )}
 
+              {/* Page number buttons */}
               <div className="flex gap-1">
-                {Array.from({ length: Math.min(totalPages, 7) }, (_, i) => {
-                  const p = i + 1
-                  return (
+                {buildPageList().map((p, i) =>
+                  p === 'ellipsis' ? (
+                    <span
+                      key={`ellipsis-${i}`}
+                      className="w-9 h-9 flex items-center justify-center text-sm text-ink-subtle select-none"
+                    >
+                      …
+                    </span>
+                  ) : (
                     <Link
                       key={p}
                       href={buildPageUrl(p)}
@@ -154,11 +200,12 @@ export default async function JobsPage({ searchParams }: JobsPageProps) {
                       {p}
                     </Link>
                   )
-                })}
+                )}
               </div>
 
+              {/* Next button */}
               {page < totalPages && (
-                <Link href={buildPageUrl(page + 1)} className="btn-secondary px-4 py-2">
+                <Link href={buildPageUrl(page + 1)} className="btn-secondary px-4 py-2 flex items-center gap-1">
                   Next <ArrowRight size={15} />
                 </Link>
               )}

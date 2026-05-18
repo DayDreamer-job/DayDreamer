@@ -1280,9 +1280,12 @@ def rotate_featured_jobs(db: Client) -> None:
 # DATABASE: Insert with dedup + views for new jobs only
 # ═══════════════════════════════════════════════════════════════
 def post_jobs_to_supabase(jobs: list, dry_run: bool = False) -> int:
+    # ── Enrich ALL jobs first (before dry-run check) ──────────
+    enriched_jobs = [enrich_job(job) for job in jobs]
+    
     if dry_run:
-        log.info(f"[DRY RUN] Would process {len(jobs)} jobs:")
-        for j in jobs[:10]:
+        log.info(f"[DRY RUN] Would process {len(enriched_jobs)} jobs:")
+        for j in enriched_jobs[:10]:
             print(f"  → {j['title']} @ {j['company']} [{j.get('apply_source','?')}]")
             print(f"     responsibilities: {len(j.get('responsibilities',[]))} items")
             print(f"     requirements:     {len(j.get('requirements',[]))} items")
@@ -1296,9 +1299,7 @@ def post_jobs_to_supabase(jobs: list, dry_run: bool = False) -> int:
     db = create_client(SUPABASE_URL, SUPABASE_KEY)
     inserted, skipped = 0, 0
 
-    for job in jobs:
-        # ── Enrich missing structured fields ───────────────────
-        job = enrich_job(job)
+    for job in enriched_jobs:
 
         title = (job.get('title') or '').strip()
         if not title or len(title) < 3 or not job.get('apply_url'):
@@ -1329,8 +1330,8 @@ def post_jobs_to_supabase(jobs: list, dry_run: bool = False) -> int:
                 'job_type':         job.get('job_type', 'Full-time'),
                 'experience':       (job.get('experience', 'Not specified'))[:100],
                 'salary_text':      job.get('salary_text'),
-                'min_salary':       job.get('min_salary'),
-                'max_salary':       job.get('max_salary'),
+                'salary_min':       job.get('min_salary'),
+                'salary_max':       job.get('max_salary'),
                 'description':      (job.get('description', ''))[:3000],
                 'responsibilities': job.get('responsibilities', []),
                 'requirements':     job.get('requirements', []),
